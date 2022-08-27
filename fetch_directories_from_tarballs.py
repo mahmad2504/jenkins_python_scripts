@@ -103,7 +103,7 @@ try:
     for folder in FOLDERS:
         cmd += " scratch/"+folder
     print(cmd)
-    #subprocess.check_output(cmd, shell=True)
+    subprocess.check_output(cmd, shell=True)
     print("SUCCESS")
     exit()
 except Exception as e:
