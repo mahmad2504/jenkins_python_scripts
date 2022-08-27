@@ -25,6 +25,8 @@ if AWS_BUCKET==None:
 if TARBALLS==None:
     print('TARBALLS environmental variable not set')
     exit(-1)
+else:
+    TARBALLS=TARBALLS.replace("\n", "")
 
 if REBUILD==None:
     REBUILD="no"
@@ -42,7 +44,8 @@ else:
 if FOLDERS==None:
     print('FOLDERS environmental variable not set')
     exit(-1)
-
+else:
+    FOLDERS=FOLDERS.replace("\n", "")
 
 if OUTPUT==None:
     OUTPUT="output.tar.gz"
@@ -52,7 +55,7 @@ print("BUILD_NUMBER=",BUILD_NUMBER)
 print("AWS_BUCKET="+AWS_BUCKET)
 print("REBUILD="+REBUILD)
 print("TARBALLS="+TARBALLS)
-print("FOLDERS"+FOLDERS)
+print("FOLDERS="+FOLDERS)
 print("OUTPUT="+OUTPUT)
 print("********************************")
 TARBALLS=TARBALLS.split(',')
