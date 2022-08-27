@@ -4,14 +4,31 @@ import subprocess
 import sys
 
 # input parameter ##########
-bucket="filesend.eps.mentorcloudservices.com"
-download_folder="downloads"
+
 tarballs_toprocess=[
 "/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz",
 "/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz",
 "/INDLIN/releases/industrial-os-2.4.1/oss/base-runtime.tar.gz"]
 ##############################
 
+AWS_BUCKET=os.getenv('AWS_BUCKET') #"filesend.eps.mentorcloudservices.com"
+TARBALLS=os.getenv('TARBALLS') #"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz,/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz"
+REBUILD=os.getenv('REBUILD') # "yes" pr "no"
+
+if AWS_BUCKET==None:
+    print('AWS_BUCKET environmental variable not set')
+
+if TARBALLS==None:
+    print('TARBALLS environmental variable not set')
+
+if REBUILD==None:
+    REBUILD="no"
+
+if REBUILD=="yes":
+    os.system('rm -rf scratch')
+    os.system('rm -rf downloads')
+    
+##############################
 #Function to pull a file from aws bucket . aws should be configured with appropriate key on the node 
 def fetch_aws_file(bucket,filepath,download_folder):
     filename=os.path.basename(filepath)
@@ -29,7 +46,7 @@ os.system('mkdir -p scratch')
 try:
   print("Fetching Tarballs from aws")
   for tarball in tarballs_toprocess:
-      downloaded_files.append(fetch_aws_file(bucket,tarball,download_folder))
+      downloaded_files.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloads"))
 except Exception as e:
    print(e)
 
@@ -46,3 +63,5 @@ except Exception as e:
    print(e)
 
 print("Done")
+
+"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz","/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz","/INDLIN/releases/industrial-os-2.4.1/oss/base-runtime.tar.gz"
