@@ -75,7 +75,7 @@ downloaded_files=[]
 os.system('mkdir -p scratch')
 os.system('mkdir -p downloads')
 
-scrathcdir = os.listdir(scratch)
+scrathcdir = os.listdir("scratch")
 try:
     print("Downloading Tarballs from aws")
     for tarball in tarballs_toprocess:
