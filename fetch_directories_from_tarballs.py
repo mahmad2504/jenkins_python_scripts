@@ -28,6 +28,10 @@ try:
 except Exception as e:
    print(e)
 
+if os.path.exists("scratch"):
+   print("Scratch folder exists, remove it and run again")
+   exit(-1)
+   
 try:
   for tarball in downloaded_files:
      print("Processing "+tarball)
