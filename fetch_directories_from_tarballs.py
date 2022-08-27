@@ -112,7 +112,7 @@ try:
     pushd scratch
     for folder in FOLDERS:
         folder=folder.replace("\n", "")
-        cmd += " scratch/"+folder
+        cmd += " "+folder
     subprocess.check_output(cmd, shell=True)
     popd
     print("SUCCESS")
