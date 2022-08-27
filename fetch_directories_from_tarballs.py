@@ -15,7 +15,7 @@ AWS_BUCKET=os.getenv('AWS_BUCKET') #"filesend.eps.mentorcloudservices.com"
 TARBALLS=os.getenv('TARBALLS') #"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz,/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz"
 REBUILD=os.getenv('REBUILD') # "yes" pr "no"
 FOLDERS=os.getenv('FOLDERS') # comma delimited top level folder names 
-BUILD_NUMBER =os.getenv('BUILD_NUMBER ')
+BUILD_NUMBER=os.getenv('BUILD_NUMBER')
 OUTPUT=os.getenv('OUTPUT') 
 
 if AWS_BUCKET==None:
