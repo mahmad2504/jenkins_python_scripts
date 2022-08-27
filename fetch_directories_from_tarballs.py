@@ -15,7 +15,7 @@ AWS_BUCKET=os.getenv('AWS_BUCKET') #"filesend.eps.mentorcloudservices.com"
 TARBALLS=os.getenv('TARBALLS') #"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz,/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz"
 REBUILD=os.getenv('REBUILD') # "yes" pr "no"
 FOLDERS=os.getenv('FOLDERS') # comma delimited top level folder names 
-BUILD_ID=os.getenv('BUILD_ID')  
+BUILD_NUMBER =os.getenv('BUILD_NUMBER ')  
 OUTPUT=os.getenv('OUTPUT') 
 
 if AWS_BUCKET==None:
@@ -42,7 +42,7 @@ if OUTPUT==None:
     OUTPUT="output.tar.gz"
   
 print("********* Parameters ***********")
-print("BUILD_ID="+BUILD_ID)
+print("BUILD_NUMBER ="+BUILD_NUMBER)
 print("AWS_BUCKET="+AWS_BUCKET)
 print("REBUILD="+REBUILD)
 print("TARBALLS="+TARBALLS)
@@ -69,7 +69,7 @@ downloaded_files=[]
 os.system('mkdir -p scratch')
 os.system('mkdir -p downloads')
 try:
-    print("Fetching Tarballs from aws")
+    print("Downloading Tarballs from aws")
     for tarball in tarballs_toprocess:
         downloaded_files.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloads"))
 except Exception as e:
@@ -78,10 +78,14 @@ except Exception as e:
     exit(-1)
     
 try:
+    print("Processing Tarballs")
     for tarball in downloaded_files:
         print("Processing "+tarball)
-        cmd='tar -xvf '+tarball+' -C scratch'
-        subprocess.check_output(cmd, shell=True)
+        if !os.path.exists(scratch):
+            cmd='tar -xvf '+tarball+' -C scratch'
+            subprocess.check_output(cmd, shell=True)
+        else
+            print("Using cached data ")
 except Exception as e:
     os.system('rm -rf scratch')
     print(e)
@@ -91,7 +95,7 @@ try:
     cmd="tar -czf "+OUTPUT
     for folder in FOLDERS:
         cmd += " scratch/"+folder
-    subprocess.check_output(cstr, shell=True)
+    subprocess.check_output(cmd, shell=True)
     print("Done")
     exit()
 except Exception as e:
