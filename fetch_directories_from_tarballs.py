@@ -98,12 +98,12 @@ except Exception as e:
     exit(-1)
 
 try:
-    print(BUILD_NUMBER)
-    print("Creating "+BUILD_NUMBER+"_"+OUTPUT+" in "+os.getcwd())
-    cmd="tar -czf "+BUILD_NUMBER+"_"+OUTPUT
+    print("Creating "+OUTPUT+" in "+os.getcwd())
+    cmd="tar -czf "+OUTPUT
     for folder in FOLDERS:
         cmd += " scratch/"+folder
-    subprocess.check_output(cmd, shell=True)
+    print(cmd)
+    #subprocess.check_output(cmd, shell=True)
     print("SUCCESS")
     exit()
 except Exception as e:
