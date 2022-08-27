@@ -35,7 +35,7 @@ if REBUILD=="yes":
 
 if BUILD_NUMBER==None:
     print('BUILD_NUMBER environmental variable not set')
-    exit(-1)"
+    exit(-1)
 else:
     BUILD_NUMBER=str(BUILD_NUMBER)
     
