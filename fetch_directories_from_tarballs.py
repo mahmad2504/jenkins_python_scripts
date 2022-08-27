@@ -5,12 +5,6 @@ import sys
 
 # input parameter ##########
 
-tarballs_toprocess=[
-"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz",
-"/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz",
-"/INDLIN/releases/industrial-os-2.4.1/oss/base-runtime.tar.gz"]
-##############################
-
 AWS_BUCKET=os.getenv('AWS_BUCKET') #"filesend.eps.mentorcloudservices.com"
 TARBALLS=os.getenv('TARBALLS') #"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz,/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz"
 REBUILD=os.getenv('REBUILD') # "yes" pr "no"
@@ -85,7 +79,7 @@ try:
     for tarball in TARBALLS:
         tarball=tarball.replace("\n", "")
         downloaded_files.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloads"))
-    os.system('touch scratch/success')
+    os.system('touch downloads/success')
 except Exception as e:
     os.system('rm -rf downloads')
     print(e)
