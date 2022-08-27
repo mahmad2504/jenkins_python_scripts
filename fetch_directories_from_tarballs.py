@@ -74,6 +74,8 @@ def fetch_aws_file(bucket,filepath,download_folder):
 downloaded_files=[]
 os.system('mkdir -p scratch')
 os.system('mkdir -p downloads')
+
+scrathcdir = os.listdir(scratch)
 try:
     print("Downloading Tarballs from aws")
     for tarball in tarballs_toprocess:
@@ -87,7 +89,7 @@ try:
     print("Processing Tarballs")
     for tarball in downloaded_files:
         print("Processing "+tarball)
-        if os.path.exists("scratch"):
+        if len(scrathcdir) > 0:
             print("Using cached data ")
         else:
             cmd='tar -xvf '+tarball+' -C scratch'
