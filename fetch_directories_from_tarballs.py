@@ -81,11 +81,11 @@ try:
     print("Processing Tarballs")
     for tarball in downloaded_files:
         print("Processing "+tarball)
-        if !os.path.exists(scratch):
+        if os.path.exists(scratch):
+            print("Using cached data ")
+        else:
             cmd='tar -xvf '+tarball+' -C scratch'
             subprocess.check_output(cmd, shell=True)
-        else
-            print("Using cached data ")
 except Exception as e:
     os.system('rm -rf scratch')
     print(e)
