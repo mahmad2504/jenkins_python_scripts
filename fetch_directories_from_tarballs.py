@@ -31,9 +31,9 @@ if REBUILD=="yes":
     os.system('rm -rf downloads')
 
 print("Parameter")
-print("AWS_BUCKET"=AWS_BUCKET)
-print("REBUILD"=REBUILD)
-print("TARBALLS"=TARBALLS)
+print("AWS_BUCKET="+AWS_BUCKET)
+print("REBUILD="+REBUILD)
+print("TARBALLS="+TARBALLS)
 
 TARBALLS=TARBALLS.split(',')
     
