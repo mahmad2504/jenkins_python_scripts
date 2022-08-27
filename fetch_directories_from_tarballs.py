@@ -57,6 +57,7 @@ print("OUTPUT="+OUTPUT)
 print("********************************")
 TARBALLS=TARBALLS.split(',')
 FOLDERS=FOLDERS.split(',')
+
     
 ##############################
 #Function to pull a file from aws bucket . aws should be configured with appropriate key on the node 
@@ -76,7 +77,8 @@ os.system('mkdir -p scratch')
 os.system('mkdir -p downloads')
 try:
     print("Downloading Tarballs from aws")
-    for tarball in tarballs_toprocess:
+    for tarball in TARBALLS:
+        tarball=tarball.replace("\n", "")
         downloaded_files.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloads"))
     os.system('touch scratch/success')
 except Exception as e:
@@ -103,8 +105,8 @@ try:
     print("Creating "+OUTPUT+" in "+os.getcwd())
     cmd="tar -czf "+OUTPUT
     for folder in FOLDERS:
+        folder=folder.replace("\n", "")
         cmd += " scratch/"+folder
-    print(cmd)
     subprocess.check_output(cmd, shell=True)
     print("SUCCESS")
     exit()
