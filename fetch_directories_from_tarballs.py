@@ -99,8 +99,8 @@ except Exception as e:
 
 try:
     print(BUILD_NUMBER)
-    print("Creating "+OUTPUT+" in "+os.system('pwd'))
-    cmd="tar -czf "+OUTPUT
+    print("Creating "+BUILD_NUMBER+"_"+OUTPUT+" in "+os.getcwd())
+    cmd="tar -czf "+BUILD_NUMBER+"_"+OUTPUT
     for folder in FOLDERS:
         cmd += " scratch/"+folder
     subprocess.check_output(cmd, shell=True)
