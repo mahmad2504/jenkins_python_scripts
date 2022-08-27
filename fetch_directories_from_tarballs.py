@@ -17,6 +17,7 @@ REBUILD=os.getenv('REBUILD') # "yes" pr "no"
 FOLDERS=os.getenv('FOLDERS') # comma delimited top level folder names 
 BUILD_NUMBER=os.getenv('BUILD_NUMBER')
 OUTPUT=os.getenv('OUTPUT') 
+NODE_NAME=os.getenv('NODE_NAME') 
 
 if AWS_BUCKET==None:
     print('AWS_BUCKET environmental variable not set')
@@ -52,6 +53,7 @@ if OUTPUT==None:
   
 print("********* Parameters ***********")
 print("BUILD_NUMBER=",BUILD_NUMBER)
+print("NODE_NAME="+NODE_NAME)
 print("AWS_BUCKET="+AWS_BUCKET)
 print("REBUILD="+REBUILD)
 print("TARBALLS="+TARBALLS)
@@ -105,7 +107,7 @@ except Exception as e:
     exit(-1)
 
 try:
-    print("Creating "+OUTPUT+" in "+os.getcwd())
+    print("Creating "+OUTPUT+" in "+os.getcwd()+" on node "+NODE_NAME)
     cmd="tar -czf "+OUTPUT
     for folder in FOLDERS:
         folder=folder.replace("\n", "")
