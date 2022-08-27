@@ -42,7 +42,7 @@ if OUTPUT==None:
     OUTPUT="output.tar.gz"
   
 print("********* Parameters ***********")
-print("BUILD_NUMBER ="+BUILD_NUMBER)
+print("BUILD_NUMBER =",BUILD_NUMBER)
 print("AWS_BUCKET="+AWS_BUCKET)
 print("REBUILD="+REBUILD)
 print("TARBALLS="+TARBALLS)
