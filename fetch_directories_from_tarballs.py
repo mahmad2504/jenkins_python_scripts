@@ -93,7 +93,7 @@ except Exception as e:
 
 try:
 
-    print("Creating "+BUILD_NUMBER+OUTPUT+" in "+os.system('pwd'))
+    print("Creating "+str(BUILD_NUMBER)+OUTPUT+" in "+os.system('pwd'))
     cmd="tar -czf "+BUILD_NUMBER+OUTPUT
     for folder in FOLDERS:
         cmd += " scratch/"+folder
