@@ -15,7 +15,7 @@ AWS_BUCKET=os.getenv('AWS_BUCKET') #"filesend.eps.mentorcloudservices.com"
 TARBALLS=os.getenv('TARBALLS') #"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz,/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz"
 REBUILD=os.getenv('REBUILD') # "yes" pr "no"
 FOLDERS=os.getenv('FOLDERS') # comma delimited top level folder names 
-BUILD_NUMBER =os.getenv('BUILD_NUMBER ')  
+BUILD_NUMBER =os.getenv('BUILD_NUMBER ')
 OUTPUT=os.getenv('OUTPUT') 
 
 if AWS_BUCKET==None:
@@ -33,6 +33,12 @@ if REBUILD=="yes":
     os.system('rm -rf scratch')
     os.system('rm -rf downloads')
 
+if BUILD_NUMBER==None:
+    print('BUILD_NUMBER environmental variable not set')
+    exit(-1)"
+else:
+    BUILD_NUMBER=str(BUILD_NUMBER)
+    
 if FOLDERS==None:
     print('FOLDERS environmental variable not set')
     exit(-1)
@@ -93,7 +99,7 @@ except Exception as e:
 
 try:
 
-    print("Creating "+str(BUILD_NUMBER)+OUTPUT+" in "+os.system('pwd'))
+    print("Creating "+BUILD_NUMBER+OUTPUT+" in "+os.system('pwd'))
     cmd="tar -czf "+BUILD_NUMBER+OUTPUT
     for folder in FOLDERS:
         cmd += " scratch/"+folder
