@@ -81,7 +81,7 @@ try:
     print("Processing Tarballs")
     for tarball in downloaded_files:
         print("Processing "+tarball)
-        if os.path.exists(scratch):
+        if os.path.exists("scratch"):
             print("Using cached data ")
         else:
             cmd='tar -xvf '+tarball+' -C scratch'
@@ -92,11 +92,13 @@ except Exception as e:
     exit(-1)
 
 try:
+
+    print("Creating "+BUILD_NUMBER+OUTPUT+" in "+os.system('pwd'))
     cmd="tar -czf "+BUILD_NUMBER+OUTPUT
     for folder in FOLDERS:
         cmd += " scratch/"+folder
     subprocess.check_output(cmd, shell=True)
-    print("Done")
+    print("SUCCESS")
     exit()
 except Exception as e:
    print(e)
