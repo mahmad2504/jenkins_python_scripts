@@ -115,7 +115,7 @@ try:
         cmd += " "+folder
     subprocess.check_output(cmd, shell=True)
     os.chdir('../')
-    os.system("mv scratch/"+OUTPUT+" .")?
+    os.system("mv scratch/"+OUTPUT+" .")
     print("SUCCESS")
     exit()
 except Exception as e:
