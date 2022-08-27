@@ -4,7 +4,7 @@ import subprocess
 import sys
 
 def fetch_aws_file(bucket,file_path):
-    cmd_str="aws s3 cp s3://"+bucket+file_path
+    cmd_str="aws s3 cp s3://"+bucket+file_path+" ."
     output = subprocess.check_output(cmd_str, shell=True)
 
 bucket="filesend.eps.mentorcloudservices.com"
