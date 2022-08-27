@@ -109,12 +109,12 @@ except Exception as e:
 try:
     print("Creating "+OUTPUT+" in "+os.getcwd()+" on node "+NODE_NAME)
     cmd="tar -czf "+OUTPUT
-    os.system('cd scratch')
+    os.chdir('scratch')
     for folder in FOLDERS:
         folder=folder.replace("\n", "")
         cmd += " "+folder
     subprocess.check_output(cmd, shell=True)
-    os.system('cd ../')
+    os.chdir('../')
     print("SUCCESS")
     exit()
 except Exception as e:
