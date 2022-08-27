@@ -32,10 +32,6 @@ if REBUILD==None:
 if REBUILD=="yes":
     os.system('rm -rf scratch')
     os.system('rm -rf downloads')
-else:
-    if os.path.exists("scratch"):
-        print("Scratch folder exists, remove it and run again")
-        exit(-1)
 
 if FOLDERS==None:
     print('FOLDERS environmental variable not set')
