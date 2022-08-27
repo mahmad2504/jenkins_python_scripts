@@ -3,6 +3,16 @@ import os
 import subprocess
 import sys
 
+# input parameter ##########
+bucket="filesend.eps.mentorcloudservices.com"
+download_folder="downloads"
+tarballs_toprocess=[
+"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz",
+"/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz",
+"/INDLIN/releases/industrial-os-2.4.1/oss/base-runtime.tar.gz"]
+##############################
+
+#Function to pull a file from aws bucket . aws should be configured with appropriate key on the node 
 def fetch_aws_file(bucket,filepath,download_folder):
     filename=os.path.basename(filepath)
     if os.path.exists(download_folder+"/"+filename):
@@ -13,12 +23,7 @@ def fetch_aws_file(bucket,filepath,download_folder):
         subprocess.check_output(cmd, shell=True)
     return download_folder+"/"+filename
 
-bucket="filesend.eps.mentorcloudservices.com"
-download_folder="downloads"
-tarballs_toprocess=[
-"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz",
-"/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz",
-"/INDLIN/releases/industrial-os-2.4.1/oss/base-runtime.tar.gz"]
+
 downloaded_files=[]
 os.system('mkdir -p scratch')
 try:
