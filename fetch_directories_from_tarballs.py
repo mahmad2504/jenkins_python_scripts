@@ -92,7 +92,7 @@ except Exception as e:
     exit(-1)
 
 try:
-    cmd="tar -czf "+OUTPUT
+    cmd="tar -czf "+BUILD_NUMBER+OUTPUT
     for folder in FOLDERS:
         cmd += " scratch/"+folder
     subprocess.check_output(cmd, shell=True)
