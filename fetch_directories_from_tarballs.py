@@ -15,6 +15,8 @@ AWS_BUCKET=os.getenv('AWS_BUCKET') #"filesend.eps.mentorcloudservices.com"
 TARBALLS=os.getenv('TARBALLS') #"/INDLIN/releases/industrial-os-2.4.1/oss/siemens-runtime.tar.gz,/INDLIN/releases/industrial-os-2.4.1/oss/ipc-runtime.tar.gz"
 REBUILD=os.getenv('REBUILD') # "yes" pr "no"
 
+
+
 if AWS_BUCKET==None:
     print('AWS_BUCKET environmental variable not set')
 
@@ -27,6 +29,13 @@ if REBUILD==None:
 if REBUILD=="yes":
     os.system('rm -rf scratch')
     os.system('rm -rf downloads')
+
+print("Parameter")
+print("AWS_BUCKET"=AWS_BUCKET)
+print("REBUILD"=REBUILD)
+print("TARBALLS"=TARBALLS)
+
+TARBALLS=TARBALLS.split(',')
     
 ##############################
 #Function to pull a file from aws bucket . aws should be configured with appropriate key on the node 
