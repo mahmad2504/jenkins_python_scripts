@@ -91,7 +91,7 @@ except Exception as e:
 for downloaded_filesv1 in f:
     tar=tarfile.open(f)
     for member in tar.getmembers():
-        if member.name.count('/') == 0
+        if member.name.count('/') == 0:
             print(member.name)
     
    
