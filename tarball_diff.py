@@ -88,6 +88,7 @@ except Exception as e:
     print(e)
     exit(-1)
 
+print("Generating packages list for v1")
 file_path = "packages_listv1"
 with open(file_path, 'w') as pfile:
     for f in downloaded_filesv1:
@@ -96,7 +97,8 @@ with open(file_path, 'w') as pfile:
             if member.name.count('/') == 1:
                 pfile.write(member.name+"\n")
     pfile.close()
-    
+
+print("Generating packages list for v2")   
 file_path = "packages_listv2"
 with open(file_path, 'w') as pfile:
     for f in downloaded_filesv2:
