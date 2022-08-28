@@ -88,7 +88,7 @@ except Exception as e:
     print(e)
     exit(-1)
 
-for downloaded_filesv1 as f:
+for downloaded_filesv1 in f:
     tar=tarfile.open(f)
     for member in tar.getmembers():
         if member.name.count('/') == 0
