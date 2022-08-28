@@ -88,15 +88,24 @@ except Exception as e:
     print(e)
     exit(-1)
 
-for f in downloaded_filesv1:
-    tar=tarfile.open(f)
-    for member in tar.getmembers():
-        if member.name.count('/') == 1:
-            print(member.name)
+file_path = "packages_listv1"
+with open(file_path, 'w') as pfile:
+    for f in downloaded_filesv1:
+        tar=tarfile.open(f)
+        for member in tar.getmembers():
+            if member.name.count('/') == 1:
+                pfile.write(member.name+"\n")
+    pfile.close()
     
-   
-print(downloaded_filesv1)
-print(downloaded_filesv2)
+file_path = "packages_listv2"
+with open(file_path, 'w') as pfile:
+    for f in downloaded_filesv2:
+        tar=tarfile.open(f)
+        for member in tar.getmembers():
+            if member.name.count('/') == 1:
+                pfile.write(member.name+"\n")
+    pfile.close()
+
 
     
     
