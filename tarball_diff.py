@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+import tarfile
 
 # input parameter ##########
 
@@ -60,7 +61,7 @@ def fetch_aws_file(bucket,filepath,download_folder):
     return download_folder+"/"+filename
 
 
-downloaded_files=[]
+downloaded_filesv1=[]
 os.system('mkdir -p downloadsv1')
 os.system('mkdir -p downloadsv2')
 
@@ -68,20 +69,28 @@ try:
     print("Downloading V1 Tarballs from aws")
     for tarball in TARBALLSv1:
         tarball=tarball.replace("\n", "")
-        downloaded_files.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloadsv1"))
+        downloaded_filesv1.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloadsv1"))
     os.system('touch downloadsv1/success')
 except Exception as e:
     os.system('rm -rf downloadsv1')
     print(e)
     exit(-1)
 
+downloaded_filesv2=[]
 try:
     print("Downloading V2 Tarballs from aws")
     for tarball in TARBALLSv2:
         tarball=tarball.replace("\n", "")
-        downloaded_files.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloadsv2"))
+        downloaded_filesv2.append(fetch_aws_file(bucket=AWS_BUCKET,filepath=tarball,download_folder="downloadsv2"))
     os.system('touch downloadsv2/success')
 except Exception as e:
     os.system('rm -rf downloadsv2')
     print(e)
     exit(-1)
+
+print(downloaded_filesv1)
+print(downloaded_filesv2)
+
+    
+    
+
