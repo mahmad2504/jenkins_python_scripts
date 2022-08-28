@@ -96,7 +96,7 @@ except Exception as e:
 
 print("Generating packages list for v1")
 
-if !os.path.exists(packages1_list_file):
+if not os.path.exists(packages1_list_file):
     with open(packages1_list_file, 'w') as pfile:
         for f in downloaded_filesv1:
             tar=tarfile.open(f)
@@ -107,7 +107,7 @@ if !os.path.exists(packages1_list_file):
 
 print("Generating packages list for v2")   
 
-if !os.path.exists(packages2_list_file):
+if not os.path.exists(packages2_list_file):
     with open(packages2_list_file, 'w') as pfile:
         for f in downloaded_filesv2:
             tar=tarfile.open(f)
