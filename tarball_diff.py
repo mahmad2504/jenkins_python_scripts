@@ -92,7 +92,7 @@ for f in downloaded_filesv1:
     tar=tarfile.open(f)
     for member in tar.getmembers():
         if member.name.count('/') == 1:
-        print(member.name)
+            print(member.name)
     
    
 print(downloaded_filesv1)
