@@ -32,9 +32,15 @@ else:
 if REBUILD==None:
     REBUILD="no"
 
+packages1_list_file= "packages_listv1"
+packages2_list_file = "packages_listv2"
+
 if REBUILD=="yes":
     os.system('rm -rf downloads')
-
+    os.system('rm -rf '+packages1_list_file)
+    os.system('rm -rf '+packages2_list_file)
+    os.system('rm -rf '+packages1_list_file+"_sorted")
+    os.system('rm -rf '+packages2_list_file+"_sorted")
   
 print("********* Parameters ***********")
 print("BUILD_NUMBER=",BUILD_NUMBER)
@@ -89,25 +95,43 @@ except Exception as e:
     exit(-1)
 
 print("Generating packages list for v1")
-file_path = "packages_listv1"
-with open(file_path, 'w') as pfile:
-    for f in downloaded_filesv1:
-        tar=tarfile.open(f)
-        for member in tar.getmembers():
-            if member.name.count('/') == 1:
-                pfile.write(member.name+"\n")
-    pfile.close()
+
+if !os.path.exists(c):
+    with open(packages1_list_file, 'w') as pfile:
+        for f in downloaded_filesv1:
+            tar=tarfile.open(f)
+            for member in tar.getmembers():
+                if member.name.count('/') == 1:
+                    pfile.write(os.path.basename(member.name)+"\n")
+        pfile.close()
 
 print("Generating packages list for v2")   
-file_path = "packages_listv2"
-with open(file_path, 'w') as pfile:
-    for f in downloaded_filesv2:
-        tar=tarfile.open(f)
-        for member in tar.getmembers():
-            if member.name.count('/') == 1:
-                pfile.write(member.name+"\n")
-    pfile.close()
 
+if !os.path.exists(packages2_list_file):
+    with open(packages2_list_file, 'w') as pfile:
+        for f in downloaded_filesv2:
+            tar=tarfile.open(f)
+            for member in tar.getmembers():
+                if member.name.count('/') == 1:
+                    pfile.write(os.path.basename(member.name)+"\n")
+        pfile.close()
+
+cmd="sort "+packages1_list_file+" >> "+packages1_list_file+"_sorted"
+subprocess.check_output(cmd, shell=True)
+
+cmd="sort "+packages2_list_file+" >> "+packages2_list_file+"_sorted"
+subprocess.check_output(cmd, shell=True)
+
+"""     
+find lines only in file1
+comm -23 file1 file2 
+
+#find lines only in file2
+comm -13 file1 file2 
+
+#find lines common to both files
+comm -12 file1 file2 
+"""
 
     
     
