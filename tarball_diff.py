@@ -44,8 +44,13 @@ if REBUILD=="yes":
     os.system('rm -rf downloadsv2')
     os.system('rm -rf '+packages1_list_file)
     os.system('rm -rf '+packages2_list_file)
-    os.system('rm -rf '+packages1_list_file+"_sorted.txt")
-    os.system('rm -rf '+packages2_list_file+"_sorted.txt")
+    
+    
+os.system('rm -rf '+packages1_list_file+"_sorted.txt")
+os.system('rm -rf '+packages2_list_file+"_sorted.txt")
+os.system('rm -rf '+removed_packages_in_v2)
+os.system('rm -rf '+new_packages_in_v2)
+os.system('rm -rf '+common_packages_in_v1_v2)
   
 print("********* Parameters ***********")
 print("BUILD_NUMBER=",BUILD_NUMBER)
@@ -142,9 +147,6 @@ if count==1:
                 if member.name.count('/') == 1 and member.isdir():
                     pfile.write(os.path.basename(member.name)+"\n")
         pfile.close()
-
-os.system('rm -rf '+packages1_list_file+"_sorted.txt")
-os.system('rm -rf '+packages2_list_file+"_sorted.txt")
 
 cmd="sort "+packages1_list_file+" >> "+packages1_list_file+"_sorted.txt"
 subprocess.check_output(cmd, shell=True)
