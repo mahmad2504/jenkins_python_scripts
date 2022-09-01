@@ -143,8 +143,8 @@ if count==1:
                     pfile.write(os.path.basename(member.name)+"\n")
         pfile.close()
 
-os.remove(packages1_list_file+"_sorted")
-os.remove(packages2_list_file+"_sorted")
+os.system('rm -rf '+packages1_list_file+"_sorted")
+os.system('rm -rf '+packages2_list_file+"_sorted")
 
 cmd="sort "+packages1_list_file+" >> "+packages1_list_file+"_sorted"
 subprocess.check_output(cmd, shell=True)
