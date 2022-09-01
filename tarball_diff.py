@@ -31,6 +31,9 @@ else:
 
 if REBUILD==None:
     REBUILD="no"
+    
+if NODE_NAME==None:
+    NODE_NAME="unknown"
 
 packages1_list_file= "packages_listv1"
 packages2_list_file = "packages_listv2"
@@ -96,7 +99,18 @@ except Exception as e:
 
 print("Generating packages list for v1")
 
-if not os.path.exists(packages1_list_file):
+count=0
+with open(packages1_list_file, 'w') as pfile:
+    for f in downloaded_filesv1:
+        tar=tarfile.open(f)
+        for member in tar.getmembers():
+            if member.name.count('/') == 0:
+                count=count+1
+                pfile.write(os.path.basename(member.name)+"\n")
+    pfile.close()
+
+
+if count==1:
     with open(packages1_list_file, 'w') as pfile:
         for f in downloaded_filesv1:
             tar=tarfile.open(f)
@@ -105,16 +119,30 @@ if not os.path.exists(packages1_list_file):
                     pfile.write(os.path.basename(member.name)+"\n")
         pfile.close()
 
+
 print("Generating packages list for v2")   
 
-if not os.path.exists(packages2_list_file):
+count=0
+with open(packages2_list_file, 'w') as pfile:
+    for f in downloaded_filesv2:
+        tar=tarfile.open(f)
+        for member in tar.getmembers():
+            if member.name.count('/') == 0 and member.isdir():
+                count=count+1
+                pfile.write(os.path.basename(member.name)+"\n")
+    pfile.close()
+
+if count==1:
     with open(packages2_list_file, 'w') as pfile:
         for f in downloaded_filesv2:
             tar=tarfile.open(f)
             for member in tar.getmembers():
-                if member.name.count('/') == 1:
+                if member.name.count('/') == 1 and member.isdir():
                     pfile.write(os.path.basename(member.name)+"\n")
         pfile.close()
+
+os.remove(packages1_list_file+"_sorted")
+os.remove(packages2_list_file+"_sorted")
 
 cmd="sort "+packages1_list_file+" >> "+packages1_list_file+"_sorted"
 subprocess.check_output(cmd, shell=True)
