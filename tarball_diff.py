@@ -40,7 +40,8 @@ packages2_list_file = "packages_listv2"
 
 if REBUILD=="yes":
     print('Deletting cached data')
-    os.system('rm -rf downloads')
+    os.system('rm -rf downloadsv1')
+    os.system('rm -rf downloadsv2')
     os.system('rm -rf '+packages1_list_file)
     os.system('rm -rf '+packages2_list_file)
     os.system('rm -rf '+packages1_list_file+"_sorted")
