@@ -161,14 +161,14 @@ subprocess.check_output(cmd, shell=True)
 cmd='cat removed_packages_in_v2'
 print(subprocess.check_output(cmd, shell=True))
 
-cmd="comm -12 packages_listv1_sorted packages_listv2_sorted >> new_packages_in_v2"
+cmd="comm -13 packages_listv1_sorted packages_listv2_sorted >> new_packages_in_v2"
 print(cmd)
 print(subprocess.check_output(cmd, shell=True))
 
 cmd='cat new_packages_in_v2'
 print(subprocess.check_output(cmd, shell=True))
 
-cmd="comm -13 packages_listv1_sorted packages_listv2_sorted >> common_packages_in_v1_v2"
+cmd="comm -12 packages_listv1_sorted packages_listv2_sorted >> common_packages_in_v1_v2"
 print(cmd)
 print(subprocess.check_output(cmd, shell=True))
 
