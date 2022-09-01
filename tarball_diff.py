@@ -48,9 +48,9 @@ if REBUILD=="yes":
     
 os.system('rm -rf '+packages1_list_file+"_sorted.txt")
 os.system('rm -rf '+packages2_list_file+"_sorted.txt")
-os.system('rm -rf '+removed_packages_in_v2)
-os.system('rm -rf '+new_packages_in_v2)
-os.system('rm -rf '+common_packages_in_v1_v2)
+os.system('rm -rf removed_packages_in_v2')
+os.system('rm -rf new_packages_in_v2')
+os.system('rm -rf common_packages_in_v1_v2')
   
 print("********* Parameters ***********")
 print("BUILD_NUMBER=",BUILD_NUMBER)
