@@ -157,7 +157,7 @@ subprocess.check_output(cmd, shell=True)
 cmd="comm -23 packages_listv1_sorted packages_listv2_sorted"
 # >> removed_packages_in_v2"
 print(cmd)
-subprocess.check_output(cmd, shell=True)
+print(subprocess.check_output(cmd, shell=True))
 
 cmd="comm -12 packages_listv1_sorted packages_listv2_sorted"
 # >> new_packages_in_v2"
