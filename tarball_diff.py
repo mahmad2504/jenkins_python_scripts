@@ -155,28 +155,25 @@ cmd="sort "+packages2_list_file+" >> "+packages2_list_file+"_sorted.txt"
 subprocess.check_output(cmd, shell=True)
 
 cmd="comm -23 packages_listv1_sorted packages_listv2_sorted >> removed_packages_in_v2"
-# >> removed_packages_in_v2"
 print(cmd)
-print(subprocess.check_output(cmd, shell=True))
-
-cmd='cat removed_packages_in_v2'
 subprocess.check_output(cmd, shell=True)
 
+cmd='cat removed_packages_in_v2'
+print(subprocess.check_output(cmd, shell=True))
+
 cmd="comm -12 packages_listv1_sorted packages_listv2_sorted >> new_packages_in_v2"
-# >> new_packages_in_v2"
 print(cmd)
 print(subprocess.check_output(cmd, shell=True))
 
 cmd='cat new_packages_in_v2'
-subprocess.check_output(cmd, shell=True)
+print(subprocess.check_output(cmd, shell=True))
 
 cmd="comm -13 packages_listv1_sorted packages_listv2_sorted >> common_packages_in_v1_v2"
-# >> common_packages_in_v1_v2"
 print(cmd)
 print(subprocess.check_output(cmd, shell=True))
 
 cmd='cat common_packages_in_v1_v2'
-subprocess.check_output(cmd, shell=True)
+print(subprocess.check_output(cmd, shell=True))
 
 """     
 find lines only in file1
