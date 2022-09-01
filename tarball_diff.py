@@ -44,8 +44,8 @@ if REBUILD=="yes":
     os.system('rm -rf downloadsv2')
     os.system('rm -rf '+packages1_list_file)
     os.system('rm -rf '+packages2_list_file)
-    os.system('rm -rf '+packages1_list_file+"_sorted")
-    os.system('rm -rf '+packages2_list_file+"_sorted")
+    os.system('rm -rf '+packages1_list_file+"_sorted.txt")
+    os.system('rm -rf '+packages2_list_file+"_sorted.txt")
   
 print("********* Parameters ***********")
 print("BUILD_NUMBER=",BUILD_NUMBER)
@@ -143,13 +143,13 @@ if count==1:
                     pfile.write(os.path.basename(member.name)+"\n")
         pfile.close()
 
-os.system('rm -rf '+packages1_list_file+"_sorted")
-os.system('rm -rf '+packages2_list_file+"_sorted")
+os.system('rm -rf '+packages1_list_file+"_sorted.txt")
+os.system('rm -rf '+packages2_list_file+"_sorted.txt")
 
-cmd="sort "+packages1_list_file+" >> "+packages1_list_file+"_sorted"
+cmd="sort "+packages1_list_file+" >> "+packages1_list_file+"_sorted.txt"
 subprocess.check_output(cmd, shell=True)
 
-cmd="sort "+packages2_list_file+" >> "+packages2_list_file+"_sorted"
+cmd="sort "+packages2_list_file+" >> "+packages2_list_file+"_sorted.txt"
 subprocess.check_output(cmd, shell=True)
 
 """     
