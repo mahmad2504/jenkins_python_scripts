@@ -9,7 +9,9 @@ from common import *
 
 class ginkgo:
     def __init__(self):
-       pass
+        self.WORKSPACE=os.getenv('WORKSPACE')
+        self.BUILD_NUMBER=os.getenv('BUILD_NUMBER')
+        pass
     def checkout(self):
         checkout();
     

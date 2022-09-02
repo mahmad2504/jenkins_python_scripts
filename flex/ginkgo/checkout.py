@@ -14,7 +14,8 @@ def uploadtarball()
 """
  
 def checkout():
-    print('checkout')
+    print('checkout') 
+    """
     os.system('mkdir -p repotop')
     os.chdir('repotop')
     sh('repo init -u ssh://git@github.com:22/MentorEmbedded/mel-manifest.git -b master -m ginkgo/mel_s32g_dev.xml --current-branch')
@@ -30,5 +31,6 @@ def checkout():
     with open('repotop.txt', 'w') as f:
         f.write(md5)
         f.close()
+    """
     
     
