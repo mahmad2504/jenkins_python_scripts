@@ -22,8 +22,8 @@ def checkout():
     sh('git rev-parse HEAD')
     os.chdir('../../../')
     sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkdiskspace /mnt/systembuilder3  350000000')
-    sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkdiskspace "/var/jenkins" 30000000')
-    sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkkeepfile')
+    sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkdiskspace "/var/jenkins" 3000000000')
+   
     sh('tar -cjf repotop.tar.bz2 repotop')
     md5=hashlib.md5(open('repotop.tar.bz2','rb').read().hexdigest())
     with open('repotop.txt', 'w') as f:
