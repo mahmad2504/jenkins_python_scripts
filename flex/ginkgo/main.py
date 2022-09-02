@@ -13,6 +13,6 @@ class ginkgo:
         self.BUILD_NUMBER=os.getenv('BUILD_NUMBER')
         pass
     def checkout(self):
-        checkout();
+        checkout(self);
     
     

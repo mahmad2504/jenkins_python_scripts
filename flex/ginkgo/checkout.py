@@ -13,7 +13,9 @@ def uploadtarball()
     ${sbmount}/${base_build_name}/${shortid}
 """
  
-def checkout():
+def checkout(inst):
+    print(inst.WORKSPACE);
+    print(inst.BUILD_NUMBER);
     os.system('mkdir -p repotop')
     os.chdir('repotop')
     sh('repo init -u ssh://git@github.com:22/MentorEmbedded/mel-manifest.git -b master -m ginkgo/mel_s32g_dev.xml --current-branch')
