@@ -8,6 +8,7 @@ from common import *
 
 def checkout():
     print('checkout')
+    """
     os.system('mkdir -p repotop')
     os.chdir('repotop')
     print(os.getcwd())
@@ -23,3 +24,4 @@ def checkout():
     sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkkeepfile')
     sh('tar -cjf repotop.tar.bz2 repotop')
     md5=hashlib.md5(open('repotop.tar.bz2','rb').read().hexdigest())
+    """
