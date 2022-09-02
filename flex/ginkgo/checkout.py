@@ -3,12 +3,18 @@ import os
 import subprocess
 import sys
 import tarfile
+import hashlib
 
 from common import *
 
+"""
+def uploadtarball()
+    mkdir -p /mnt/systembuilder3/mel_ginkgo_s32g/220901_0703
+    ${sbmount}/${base_build_name}/${shortid}
+"""
+ 
 def checkout():
     print('checkout')
-    """
     os.system('mkdir -p repotop')
     os.chdir('repotop')
     print(os.getcwd())
@@ -24,4 +30,8 @@ def checkout():
     sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkkeepfile')
     sh('tar -cjf repotop.tar.bz2 repotop')
     md5=hashlib.md5(open('repotop.tar.bz2','rb').read().hexdigest())
-    """
+    with open('repotop.txt', 'w') as f:
+        f.write(md5)
+        f.close()
+    
+    
