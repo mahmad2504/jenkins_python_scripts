@@ -4,7 +4,7 @@ import subprocess
 import sys
 
 def sh(command):
-    print('>>'+command)
+    print(os.getcwd()+'>>'+command)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     # Poll process for new output until finished
     while True:
