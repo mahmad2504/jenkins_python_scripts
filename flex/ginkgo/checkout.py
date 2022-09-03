@@ -26,7 +26,8 @@ def checkout(params):
     retval=checkdiskspace('/mnt/systembuilder3',350000000)
     if(retval == -1):
         exit(-1)
-    retval=checkdiskspace(params.workspace,30000000)
+    print(params.WORKSPACE)
+    retval=checkdiskspace(params.WORKSPACE,30000000)
     if(retval == -1):
         exit(-1)
    
