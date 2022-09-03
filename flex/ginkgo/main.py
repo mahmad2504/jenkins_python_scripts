@@ -39,3 +39,6 @@ class ginkgo:
     def checkout(self):
         checkout(DictObj(self.params))
     
+     def main_incremental(self):
+        main_incremental(DictObj(self.params))
+    
