@@ -12,7 +12,7 @@ class DictObj:
             else:
                setattr(self, key, DictObj(val) if isinstance(val, dict) else val)
 
-def checkdiskspace(dspath,dskerrlimit)
+def checkdiskspace(dspath,dskerrlimit):
 	dskspc=os.system("df -P $dspath | sed '1d' | awk '{print $4}' | tr -d '\n'")
 	if dskspc<=dskerrlimit:
 		printf "ERROR: Insufficient disk space on "+dspath+" "+dskspc KB"
