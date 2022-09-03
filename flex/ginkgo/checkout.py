@@ -8,12 +8,10 @@ import shutil
 
 from common import *
 
-"""
 def uploadtarball()
     mkdir -p /mnt/systembuilder3/mel_ginkgo_s32g/220901_0703
     ${sbmount}/${base_build_name}/${shortid}
-"""
- 
+
 def checkout(params):
     os.system('mkdir -p repotop')
     os.chdir('repotop')
@@ -26,7 +24,7 @@ def checkout(params):
     retval=checkdiskspace('/mnt/systembuilder3',350000000)
     if(retval == -1):
         exit(-1)
-    print(params.WORKSPACE)
+    
     retval=checkdiskspace(params.WORKSPACE,30000000)
     if(retval == -1):
         exit(-1)
@@ -37,6 +35,8 @@ def checkout(params):
     with open('repotop.txt', 'w') as f:
         f.write(md5)
         f.close()
+    
+    uploadtarball()
     """
     md5=hashlib.md5(open('repotop.tar.bz2','rb').read().hexdigest())
     with open('repotop.txt', 'w') as f:
