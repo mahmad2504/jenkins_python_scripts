@@ -35,7 +35,8 @@ def sh(command):
        raise ProcessException(command, exitCode, output)
        
 def checkdiskspace(dspath,dskerrlimit):
-    dskspc=subprocess.check_output("df -P $dspath | sed '1d' | awk '{print $4}' | tr -d '\n'")
+    dskspc=subprocess.check_output("df -P "+dspath+" | sed '1d' | awk '{print $4}' | tr -d '\n'"
+   
     print(dskspc)
     print(dskerrlimit)
     return dskspc
