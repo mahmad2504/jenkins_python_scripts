@@ -56,3 +56,8 @@ def computemd5(filename):
         for byte_block in iter(lambda: f.read(4096),b""):
             md5_hash.update(byte_block)
     return md5_hash.hexdigest()
+    
+def printdictionary(dct,title="Dictionary"):
+    print(title+":")
+    for item, amount in dct.items():  # dct.iteritems() in Python 2
+        print("{} ({})".format(item, amount))
