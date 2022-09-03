@@ -15,7 +15,7 @@ class DictObj:
 def checkdiskspace(dspath,dskerrlimit):
 	dskspc=os.system("df -P $dspath | sed '1d' | awk '{print $4}' | tr -d '\n'")
 	if dskspc<=dskerrlimit:
-		print("ERROR: Insufficient disk space on "+dspath+" "+dskspc+" KB")
+        print("ERROR: Insufficient disk space on "+dspath+" "+str(dskspc)+" KB")
     return dskspc
 
 def sh(command):
