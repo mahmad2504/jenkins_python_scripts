@@ -15,6 +15,7 @@ class DictObj:
 def sh(command):
     print('>>'+os.getcwd()+'>>'+command)
     result=subprocess.check_output(command, shell=True);
+    print(result)
     return result
     
 def sh_old(command):
