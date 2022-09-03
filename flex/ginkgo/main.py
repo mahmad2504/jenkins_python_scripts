@@ -5,6 +5,7 @@ import sys
 import hashlib
 sys.path.append('./scripts/flex/ginkgo')
 from checkout import *
+from main_incremental import *
 from common import *
 import yaml
 
