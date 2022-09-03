@@ -12,8 +12,12 @@ class DictObj:
             else:
                setattr(self, key, DictObj(val) if isinstance(val, dict) else val)
 
-
 def sh(command):
+    print('>>'+os.getcwd()+'>>'+command)
+    result=subprocess.check_output(command, shell=True);
+    return result
+    
+def sh_old(command):
     print('>>'+os.getcwd()+'>>'+command)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     # Poll process for new output until finished
@@ -35,13 +39,7 @@ def sh(command):
        raise ProcessException(command, exitCode, output)
        
 def checkdiskspace(dspath,dskerrlimit):
-    cmd="df -P "+dspath+" | sed '1d' | awk '{print $4}' | tr -d '\n'"
-    print(cmd)
-    dskspc=int(sh(cmd))
-   
-    print(type(dskspc))
-    print(type(dskerrlimit))
-
+    dskspc=int(sh("df -P "+dspath+" | sed '1d' | awk '{print $4}'| tr -d '\n' "))
     if dskspc<=dskerrlimit:
         print("ERROR: Insufficient disk space on "+dspath+" "+dskspc+" KB")
     return dskspc
