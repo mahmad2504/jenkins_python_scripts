@@ -33,10 +33,14 @@ def checkout(params):
         exit(-1)
    
     sh('tar -cjf repotop.tar.bz2 repotop')
+    md5=computemd5('repotop.tar.bz2')
+    print("md5 checksum="+md5)
+    """
     md5=hashlib.md5(open('repotop.tar.bz2','rb').read().hexdigest())
     with open('repotop.txt', 'w') as f:
         f.write(md5)
         f.close()
+    """
     
         
 
