@@ -16,23 +16,28 @@ class ginkgo:
         self.params['BUILD_NUMBER']=os.getenv('BUILD_NUMBER')
         self.params['OVERRIDE_BUILD_NUMBER']=os.getenv('OVERRIDE_BUILD_NUMBER')
         self.params['BUILD_LOCATION']=os.getenv('BUILD_LOCATION')
-        
-        if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
-            print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER'])
-            self.params['BUILD_NUMBER']=self.params['OVERRIDE_BUILD_NUMBER']
-            
+              
         if(self.params['WORKSPACE'] == None):
             print('WORKSPACE environment variable is not defined')
             exit(-1)
-        if(self.params['BUILD_NUMBER'] == None):
+        if(self.params['BUILD_NUMBER'] == None)&&(self.params['OVERRIDE_BUILD_NUMBER'] == None):
             print('BUILD_NUMBER environment variable is not defined')
             exit(-1)
         if(self.params['BUILD_LOCATION'] == None):
             print('BUILD_LOCATION environment variable is not defined')
             exit(-1)
-            
-    def checkout(self):
+        
+        
+        if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
+            self.params['build_folder']=params['BUILD_LOCATION'+"/"+params['OVERRIDE_BUILD_NUMBER']
+        else:
+            self.params['build_folder']=params['BUILD_LOCATION'+"/"+params['BUILD_NUMBER']
+        
         printdictionary(self.params,'Parameters')
-        params=DictObj(self.params)
-        checkout(params)
+        if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
+            print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER'])
+            self.params['BUILD_NUMBER']=self.params['OVERRIDE_BUILD_NUMBER']
+        
+    def checkout(self):
+        checkout(DictObj(self.params))
     
