@@ -4,6 +4,7 @@ import subprocess
 import sys
 import tarfile
 import hashlib
+import psutil
 
 from common import *
 
@@ -21,6 +22,8 @@ def checkout(params):
     os.chdir('./.repo/manifests')
     sh('git rev-parse HEAD')
     os.chdir('../../../')
+    hdd = psutil.disk_usage('/mnt/systembuilder3')
+    print(hdd)
     sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkdiskspace /mnt/systembuilder3  350000000')
     sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkdiskspace "/var/jenkins" 30000000')
    
