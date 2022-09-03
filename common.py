@@ -40,7 +40,9 @@ def sh_old(command):
        raise ProcessException(command, exitCode, output)
        
 def checkdiskspace(dspath,dskerrlimit):
-    dskspc=int(sh("df -P "+dspath+" | sed '1d' | awk '{print $4}'| tr -d '\n' "))
+    dskspc=sh("df -P "+dspath+" | sed '1d' | awk '{print $4}'| tr -d '\n' ")
+    print(dskspc)
+    print("----")
     if dskspc<=dskerrlimit:
         print("ERROR: Insufficient disk space on "+dspath+" "+dskspc+" KB")
         return -1
