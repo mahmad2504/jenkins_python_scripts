@@ -54,9 +54,9 @@ class ginkgo:
 
     def checkout(self):
         self.params=DictObj(self.params)
-        checkout(DictObj(self)
+        checkout(self)
     
     def main_incremental(self):
-       self.params=DictObj(self.params)
-        main_incremental(DictObj(self))
+        self.params=DictObj(self.params)
+        main_incremental(self)
     
