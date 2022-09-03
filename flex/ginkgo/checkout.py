@@ -38,7 +38,7 @@ def checkout(params):
     with open('repotop.txt', 'w') as f:
         f.write(md5)
         f.close()
-    """
+    
         
 
 
