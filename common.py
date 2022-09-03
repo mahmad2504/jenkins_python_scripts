@@ -36,6 +36,6 @@ def sh(command):
        
 def checkdiskspace(dspath,dskerrlimit):
     dskspc=sh("df -P $dspath | sed '1d' | awk '{print $4}' | tr -d '\n'")
-    if dskspc<=dskerrlimit:
+    if int(dskspc)<=dskerrlimit:
         print("ERROR: Insufficient disk space on "+dspath+" "+str(dskspc)+" KB")
     return dskspc
