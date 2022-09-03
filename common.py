@@ -37,7 +37,7 @@ def sh(command):
 def checkdiskspace(dspath,dskerrlimit):
     cmd="df -P "+dspath+" | sed '1d' | awk '{print $4}' | tr -d '\n'"
     print(cmd)
-    dskspc=sh(cmd)
+    dskspc=int(sh(cmd))
    
     print(type(dskspc))
     print(type(dskerrlimit))
