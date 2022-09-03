@@ -8,7 +8,8 @@ from common import *
 
 def main_incremental(obj):
     params=obj.params
-    env=params=obj.env
+    env=obj.env
+    print(env)
     cmd='tar -xjf '+params.build_path+"/repotop.tar.bz2"
     sh(cmd,env)
     pass
