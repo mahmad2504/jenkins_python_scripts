@@ -20,7 +20,7 @@ class ginkgo:
         if(self.params['WORKSPACE'] == None):
             print('WORKSPACE environment variable is not defined')
             exit(-1)
-        if ((self.params['BUILD_NUMBER'] == None)&&(self.params['OVERRIDE_BUILD_NUMBER'] == None)):
+        if ((self.params['BUILD_NUMBER'] == None) and (self.params['OVERRIDE_BUILD_NUMBER'] == None)):
             print('BUILD_NUMBER environment variable is not defined')
             exit(-1)
         if(self.params['BUILD_LOCATION'] == None):
