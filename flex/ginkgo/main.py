@@ -29,15 +29,13 @@ class ginkgo:
         
         
         if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
+            #print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER'])
             self.params['build_folder']=self.params['BUILD_LOCATION']+"/"+self.params['OVERRIDE_BUILD_NUMBER']
         else:
             self.params['build_folder']=self.params['BUILD_LOCATION']+"/"+self.params['BUILD_NUMBER']
         
         printdictionary(self.params,'Parameters')
-        if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
-            print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER'])
-            self.params['BUILD_NUMBER']=self.params['OVERRIDE_BUILD_NUMBER']
-        
+
     def checkout(self):
         checkout(DictObj(self.params))
     
