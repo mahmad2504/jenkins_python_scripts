@@ -35,7 +35,7 @@ def sh(command):
        raise ProcessException(command, exitCode, output)
        
 def checkdiskspace(dspath,dskerrlimit):
-    cmd="df -P "+dspath+" | sed '1d' | awk '{print $4}'"
+    cmd="df -P "+dspath+" | sed '1d' | awk '{print $4}' | tr -d '\n'"
     print(cmd)
     dskspc=sh(cmd)
    
