@@ -20,10 +20,10 @@ class ginkgo:
             self.params['BUILD_NUMBER']=self.params['OVERRIDE_BUILD_NUMBER']
             
         if(self.params['WORKSPACE'] == None):
-            print('WORKSPACE environment variable is not defined'
+            print('WORKSPACE environment variable is not defined')
             exit(-1)
         if(self.params['BUILD_NUMBER'] == None):
-            print('BUILD_NUMBER environment variable is not defined'
+            print('BUILD_NUMBER environment variable is not defined')
             exit(-1)
     def checkout(self):
         printdictionary(self.params,'Parameters')
