@@ -22,7 +22,7 @@ class ginkgo:
         self.params['WORKSPACE']=os.getenv('WORKSPACE')
         self.params['BUILD_NUMBER']=os.getenv('BUILD_NUMBER')
         self.params['OVERRIDE_BUILD_NUMBER']=os.getenv('OVERRIDE_BUILD_NUMBER')
-       
+        self.params['SYSTEM_BUILDER']=os.getenv('SYSTEM_BUILDER')
               
         if(self.params['WORKSPACE'] == None):
             print('WORKSPACE environment variable is not defined')
