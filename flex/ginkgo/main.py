@@ -16,7 +16,7 @@ class ginkgo:
         self.params['OVERRIDE_BUILD_NUMBER']=os.getenv('OVERRIDE_BUILD_NUMBER')
         
         if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
-            print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER']
+            print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER'])
             self.params['BUILD_NUMBER']=self.params['OVERRIDE_BUILD_NUMBER']
             
         if(self.params['WORKSPACE'] == None):
