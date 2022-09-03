@@ -58,6 +58,6 @@ def computemd5(filename):
     return md5_hash.hexdigest()
     
 def printdictionary(dct,title="Dictionary"):
-    print(title+":")
+    print("**********"+title+"**********")
     for item, amount in dct.items():  # dct.iteritems() in Python 2
-        print("{} ({})".format(item, amount))
+        print("{}={}".format(item, amount))
