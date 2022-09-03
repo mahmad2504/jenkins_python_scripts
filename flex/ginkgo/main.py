@@ -10,13 +10,19 @@ from common import *
 import yaml
 
 class ginkgo:
-    params={'repo_url':"ssh://git@github.com:22/MentorEmbedded/mel-manifest.git",'repo_branch':"master"}
+    params={
+    'repo_url':"ssh://git@github.com:22/MentorEmbedded/mel-manifest.git",
+    'repo_branch':"master",
+    'default_system_builder':'systembuilder3',
+    'build_folder':"mel_ginkgo_s32g",
+    }
+    
     def __init__(self):
     
         self.params['WORKSPACE']=os.getenv('WORKSPACE')
         self.params['BUILD_NUMBER']=os.getenv('BUILD_NUMBER')
         self.params['OVERRIDE_BUILD_NUMBER']=os.getenv('OVERRIDE_BUILD_NUMBER')
-        self.params['BUILD_LOCATION']=os.getenv('BUILD_LOCATION')
+       
               
         if(self.params['WORKSPACE'] == None):
             print('WORKSPACE environment variable is not defined')
@@ -24,16 +30,18 @@ class ginkgo:
         if ((self.params['BUILD_NUMBER'] == None) and (self.params['OVERRIDE_BUILD_NUMBER'] == None)):
             print('BUILD_NUMBER environment variable is not defined')
             exit(-1)
-        if(self.params['BUILD_LOCATION'] == None):
-            print('BUILD_LOCATION environment variable is not defined')
+        if(self.params['SYSTEM_BUILDER'] == None):
+            print('SYSTEM_BUILDER environment variable is not defined')
             exit(-1)
         
-        
+        if(self.params['SYSTEM_BUILDER'].lower() == 'default'):
+            self.params['SYSTEM_BUILDER']=self.params['default_system_builder']
+         
         if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
             #print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER'])
-            self.params['build_folder']=self.params['BUILD_LOCATION']+"/"+self.params['OVERRIDE_BUILD_NUMBER']
+            self.params['build_path']="/mnt/"+self.params['SYSTEM_BUILDER']+"/"+self.params['build_folder']+"/"+self.params['OVERRIDE_BUILD_NUMBER']
         else:
-            self.params['build_folder']=self.params['BUILD_LOCATION']+"/"+self.params['BUILD_NUMBER']
+            self.params['build_path']="/mnt/"+self.params['SYSTEM_BUILDER']+"/"+self.params['build_folder']+"/"+self.params['BUILD_NUMBER']
         
         printdictionary(self.params,'Parameters')
 

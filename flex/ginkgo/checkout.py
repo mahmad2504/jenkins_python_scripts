@@ -9,9 +9,9 @@ import shutil
 from common import *
 
 def uploadtarball(params):
-    cmd='mkdir -p '+params.build_folder
+    cmd='mkdir -p '+params.build_path
     sh(cmd)
-    cmd='cp repotop.tar.bz2 repotop.txt '+params.build_folder+"/"
+    cmd='cp repotop.tar.bz2 repotop.txt '+params.build_path+"/"
     sh(cmd)
 
 def checkout(params):

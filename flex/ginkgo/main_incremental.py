@@ -7,4 +7,6 @@ import tarfile
 from common import *
 
 def main_incremental(params):
-   pass
+    cmd='tar -xjf '+params.build_folder+"/repotop.tar.bz2"
+    sh(cmd)
+    pass
