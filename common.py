@@ -15,8 +15,8 @@ class DictObj:
 def sh(command):
     print('>>'+os.getcwd()+'>>'+command)
     result=subprocess.check_output(command, shell=True);
-    print(result)
-    return result
+    print(result.decode("utf-8"))
+    return result.decode("utf-8")
     
 def sh_old(command):
     print('>>'+os.getcwd()+'>>'+command)
