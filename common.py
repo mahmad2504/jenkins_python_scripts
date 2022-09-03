@@ -39,8 +39,8 @@ def checkdiskspace(dspath,dskerrlimit):
     print(cmd)
     dskspc=sh(cmd)
    
-    print(dskspc)
-    print(dskerrlimit)
+    print(type(dskspc))
+    print(type(dskerrlimit))
 
     if dskspc<=dskerrlimit:
         print("ERROR: Insufficient disk space on "+dspath+" "+dskspc+" KB")
