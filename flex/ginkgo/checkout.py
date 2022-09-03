@@ -16,7 +16,7 @@ def uploadtarball()
  
 def checkout(params):
     
-    checkdiskspace('/mnt/systembuilder3',350000000)
+    print(checkdiskspace('/mnt/systembuilder3',350000000))
     
     """
     os.system('mkdir -p repotop')
@@ -36,7 +36,7 @@ def checkout(params):
     with open('repotop.txt', 'w') as f:
         f.write(md5)
         f.close()
-        
+    """
         
 
 
