@@ -8,9 +8,10 @@ import shutil
 
 from common import *
 
-def uploadtarball()
-    mkdir -p /mnt/systembuilder3/mel_ginkgo_s32g/220901_0703
-    ${sbmount}/${base_build_name}/${shortid}
+def uploadtarball(params):
+    cmd='mkdir -p '+params.BUILD_LOCATION+"/"+params.BUILD_NUMBER
+    sh(cmd)
+    
 
 def checkout(params):
     os.system('mkdir -p repotop')
