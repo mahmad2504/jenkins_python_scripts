@@ -11,7 +11,8 @@ from common import *
 def uploadtarball(params):
     cmd='mkdir -p '+params.BUILD_LOCATION+"/"+params.BUILD_NUMBER
     sh(cmd)
-    
+    cmd='cp repotop.tar.bz2 repotop.txt '+params.BUILD_LOCATION
+    sh(cmd)
 
 def checkout(params):
     os.system('mkdir -p repotop')
@@ -37,7 +38,7 @@ def checkout(params):
         f.write(md5)
         f.close()
     
-    uploadtarball()
+    uploadtarball(params)
     """
     md5=hashlib.md5(open('repotop.tar.bz2','rb').read().hexdigest())
     with open('repotop.txt', 'w') as f:
