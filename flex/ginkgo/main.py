@@ -16,6 +16,5 @@ class ginkgo:
     def checkout(self):
         params=DictObj(self.params)
         print(yaml.dump(params))
-        checkout(DictObj(params));
-    
+        checkout(params)
     
