@@ -17,14 +17,21 @@ funct=sys.argv[2]
 try:
     obj = eval(module)()
 
-except (SyntaxError, NameError, TypeError, ZeroDivisionError):
-    print("module "+module.replace("_",".")+" not found")
+except Exception as e:
+    print(e)
+    #print("module "+module.replace("_",".")+" not found")
     exit(-1)
-    
+
+function=None  
 try:
     function = getattr(obj,funct)
-    function()
-except AttributeError:
-    print(funct+"() not found in "+module+" module")
+   
+
+except Exception as e:
+    print(e)
+    #print(funct+"() not found in "+module+" module")
     exit(-1)
+
+function()
+
 

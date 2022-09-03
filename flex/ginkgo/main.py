@@ -8,11 +8,11 @@ from checkout import *
 from common import *
 
 class ginkgo:
+    params={'repo_url':"ssh://git@github.com:22/MentorEmbedded/mel-manifest.git",'repo_branch':"master"}
     def __init__(self):
-        self.WORKSPACE=os.getenv('WORKSPACE')
-        self.BUILD_NUMBER=os.getenv('BUILD_NUMBER')
-        pass
+        self.params['WORKSPACE']=os.getenv('WORKSPACE')
+        self.params['BUILD_NUMBER']=os.getenv('BUILD_NUMBER')
     def checkout(self):
-        checkout(self);
+        checkout(DictObj(self.params));
     
     
