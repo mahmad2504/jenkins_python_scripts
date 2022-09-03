@@ -17,8 +17,6 @@ def uploadtarball()
 def checkout(params):
     
     print(checkdiskspace('/mnt/systembuilder3',350000000))
-    
-    """
     os.system('mkdir -p repotop')
     os.chdir('repotop')
     sh('repo init -u '+params.repo_url+' -b '+params.repo_branch+' -m '+'ginkgo/mel_s32g_dev.xml'+' --current-branch')
@@ -28,8 +26,12 @@ def checkout(params):
     os.chdir('../../../')
     
    
-    sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkdiskspace /mnt/systembuilder3  350000000')
-    sh('. /mnt/systembuilder/build/scripts/jenkins_preamble checkdiskspace "/var/jenkins" 30000000')
+    retval=checkdiskspace('/mnt/systembuilder3',350000000)
+    if(retval == -1):
+        exit(-1)
+    retval=checkdiskspace(params.workspace,30000000)
+    if(retval == -1):
+        exit(-1)
    
     sh('tar -cjf repotop.tar.bz2 repotop')
     md5=hashlib.md5(open('repotop.tar.bz2','rb').read().hexdigest())
