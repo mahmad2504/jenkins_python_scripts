@@ -41,7 +41,7 @@ def checkdiskspace(dspath,dskerrlimit):
    
     print(dskspc)
     print(dskerrlimit)
-    return dskspc
-    if int(dskspc)<=dskerrlimit:
-        print("ERROR: Insufficient disk space on "+dspath+" "+str(dskspc)+" KB")
+
+    if dskspc<=dskerrlimit:
+        print("ERROR: Insufficient disk space on "+dspath+" "+dskspc+" KB")
     return dskspc
