@@ -53,9 +53,10 @@ class ginkgo:
         self.env=setenvironment(self.params)
 
     def checkout(self):
-        checkout(DictObj(self.params))
+        self.params=DictObj(self.params)
+        checkout(DictObj(self)
     
     def main_incremental(self):
-        print(self.params)
-        main_incremental(DictObj(self.params))
+       self.params=DictObj(self.params)
+        main_incremental(DictObj(self))
     
