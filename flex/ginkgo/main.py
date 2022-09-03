@@ -15,6 +15,11 @@ class ginkgo:
     'repo_branch':"master",
     'default_system_builder':'systembuilder3',
     'base_build_name':"mel_ginkgo_s32g",
+    'mirrorlocation'="http://easource.alm.mentorg.com/sources/ginkgo"
+    'syncsourcesto'="easource.alm.mentorg.com:/opt/sources/ginkgo"
+    'sstate_mirror'="http://easource.alm.mentorg.com/sstate"
+    'accept_xilinx_eula'="true"
+    'buildscripts'=""
     }
     
     def __init__(self):
@@ -43,11 +48,13 @@ class ginkgo:
         else:
             self.params['build_path']="/mnt/"+self.params['SYSTEM_BUILDER']+"/"+self.params['base_build_name']+"/"+self.params['BUILD_NUMBER']
         
+        self.params['buildscripts']=self.params['WORKSPACE']+'/repotop/scripts'
         printdictionary(self.params,'Parameters')
+        self.env=setenvironment(self.params)
 
     def checkout(self):
         checkout(DictObj(self.params))
     
     def main_incremental(self):
-        main_incremental(DictObj(self.params))
+        main_incremental(DictObj(self))
     

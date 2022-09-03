@@ -13,9 +13,9 @@ class DictObj:
             else:
                setattr(self, key, DictObj(val) if isinstance(val, dict) else val)
 
-def sh(command):
+def sh(command,env=None):
     print('>>'+os.getcwd()+'>>'+command)
-    result=subprocess.check_output(command, shell=True);
+    result=subprocess.check_output(command, shell=True,env=env);
     print(result.decode("utf-8"))
     return result.decode("utf-8")
     
@@ -54,7 +54,13 @@ def computemd5(filename):
         for byte_block in iter(lambda: f.read(4096),b""):
             md5_hash.update(byte_block)
     return md5_hash.hexdigest()
-    
+
+def setenvironment(dct)
+    myenv = os.environ.copy()
+    for item, value in dct.items():  # dct.iteritems() in Python 2
+        myenv[item] = value
+    return myenv
+     
 def printdictionary(dct,title="Dictionary"):
     print("**********"+title+"**********")
     for item, amount in dct.items():  # dct.iteritems() in Python 2
