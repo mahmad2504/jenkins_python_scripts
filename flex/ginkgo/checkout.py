@@ -15,7 +15,6 @@ def uploadtarball()
 """
  
 def checkout(params):
-    print(params)
     os.system('mkdir -p repotop')
     os.chdir('repotop')
     sh('repo init -u '+params.repo_url+' -b '+params.repo_branch+' -m '+'ginkgo/mel_s32g_dev.xml'+' --current-branch')

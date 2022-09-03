@@ -14,7 +14,7 @@ class ginkgo:
         self.params['WORKSPACE']=os.getenv('WORKSPACE')
         self.params['BUILD_NUMBER']=os.getenv('BUILD_NUMBER')
     def checkout(self):
-        printdictionary(self.params)
+        printdictionary(self.params,'Parameters')
         params=DictObj(self.params)
         checkout(params)
     
