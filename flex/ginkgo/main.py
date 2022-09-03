@@ -14,7 +14,7 @@ class ginkgo:
     'repo_url':"ssh://git@github.com:22/MentorEmbedded/mel-manifest.git",
     'repo_branch':"master",
     'default_system_builder':'systembuilder3',
-    'build_folder':"mel_ginkgo_s32g",
+    'base_build_name':"mel_ginkgo_s32g",
     }
     
     def __init__(self):
@@ -39,9 +39,9 @@ class ginkgo:
          
         if(self.params['OVERRIDE_BUILD_NUMBER'] != None):
             #print("Overriding BUILD_NUMBER "+self.params['BUILD_NUMBER']+" with "+self.params['OVERRIDE_BUILD_NUMBER'])
-            self.params['build_path']="/mnt/"+self.params['SYSTEM_BUILDER']+"/"+self.params['build_folder']+"/"+self.params['OVERRIDE_BUILD_NUMBER']
+            self.params['build_path']="/mnt/"+self.params['SYSTEM_BUILDER']+"/"+self.params['base_build_name']+"/"+self.params['OVERRIDE_BUILD_NUMBER']
         else:
-            self.params['build_path']="/mnt/"+self.params['SYSTEM_BUILDER']+"/"+self.params['build_folder']+"/"+self.params['BUILD_NUMBER']
+            self.params['build_path']="/mnt/"+self.params['SYSTEM_BUILDER']+"/"+self.params['base_build_name']+"/"+self.params['BUILD_NUMBER']
         
         printdictionary(self.params,'Parameters')
 
