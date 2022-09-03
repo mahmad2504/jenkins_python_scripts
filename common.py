@@ -61,3 +61,4 @@ def printdictionary(dct,title="Dictionary"):
     print("**********"+title+"**********")
     for item, amount in dct.items():  # dct.iteritems() in Python 2
         print("{}={}".format(item, amount))
+    print("*****************************")
