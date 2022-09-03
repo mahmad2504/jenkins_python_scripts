@@ -57,6 +57,5 @@ class ginkgo:
     
     def main_incremental(self):
         print(self.params)
-        exit(-1)
         main_incremental(DictObj(self.params))
     
