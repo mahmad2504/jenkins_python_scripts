@@ -15,11 +15,11 @@ class ginkgo:
     'repo_branch':"master",
     'default_system_builder':'systembuilder3',
     'base_build_name':"mel_ginkgo_s32g",
-    'mirrorlocation'="http://easource.alm.mentorg.com/sources/ginkgo",
-    'syncsourcesto'="easource.alm.mentorg.com:/opt/sources/ginkgo",
-    'sstate_mirror'="http://easource.alm.mentorg.com/sstate",
-    'accept_xilinx_eula'="true",
-    'buildscripts'=""
+    'mirrorlocation':"http://easource.alm.mentorg.com/sources/ginkgo",
+    'syncsourcesto':"easource.alm.mentorg.com:/opt/sources/ginkgo",
+    'sstate_mirror':"http://easource.alm.mentorg.com/sstate",
+    'accept_xilinx_eula':"true",
+    'buildscripts':""
     }
     
     def __init__(self):
