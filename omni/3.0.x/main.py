@@ -7,7 +7,6 @@ sys.path.append('./scripts/omni/3.0.x')
 from checkout import *
 from main_incremental import *
 from common import *
-import yaml
 
 class ginkgo:
     params={
