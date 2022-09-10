@@ -11,7 +11,7 @@ import yaml
 
 class ginkgo:
     params={
-    'constants'="13.0.0",
+    'constants'="13.0.0"
     }
     
     def __init__(self):
