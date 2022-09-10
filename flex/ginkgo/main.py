@@ -11,6 +11,7 @@ import yaml
 
 class ginkgo:
     params={
+    'base_version'="13.0.0",
     'repo_url':"ssh://git@github.com:22/MentorEmbedded/mel-manifest.git",
     'repo_branch':"master",
     'default_system_builder':'systembuilder3',
