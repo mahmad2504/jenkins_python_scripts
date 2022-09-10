@@ -4,9 +4,15 @@ import subprocess
 import sys
 
 import common
-from flex.ginkgo.main import ginkgo as flex_ginkgo
-from omni.3_0_x.main import 3_0_x as omni_3_0_x
-from tarball.main import tarball
+# import all flex classes
+from flex.ginkgo.main import main as flex_ginkgo
+
+# import all omni classes
+from omni.fir.main import main as omni_fir
+from omni.ginkgo.main import main as omni_ginkgo           #/sripts/run.py omni.y {funct}
+
+
+from tarball.main import tarball                           #/sripts/run.py tarball {funct}
 
 if len(sys.argv)<3:
     print('usage: run <module> <function>')

@@ -3,12 +3,13 @@ import os
 import subprocess
 import sys
 import hashlib
-sys.path.append('./scripts/flex/ginkgo')
-from checkout import *
-from main_incremental import *
+
+# import all local script
+from flex.ginkgo.checkout import *
+from flex.ginkgo.main_incremental import *
 from common import *
 
-class ginkgo:
+class main:
     params={
     'base_version':"13.0.0",
     'repo_url':"ssh://git@github.com:22/MentorEmbedded/mel-manifest.git",

@@ -3,12 +3,11 @@ import os
 import subprocess
 import sys
 import hashlib
-sys.path.append('./scripts/omni/3.0.x')
-from checkout import *
-from main_incremental import *
+
+from omni.fir.checkout import *
 from common import *
 
-class 3_0_x:
+class main:
     params={
     "constants":"3.0.0"
     }
@@ -23,6 +22,7 @@ class 3_0_x:
         self.env=setenvironment(self.params)
 
     def checkout(self):
+        print("3.x")
         self.params=DictObj(self.params)
         checkout(self)
     

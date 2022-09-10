@@ -3,10 +3,15 @@ import os
 import subprocess
 import sys
 import hashlib
-sys.path.append('../')
+
+# import all local script
+from flex.elm.checkout import *
+
+# import parent script
 from common import *
-def build():
-    print("Building elm")
-    common_func();
-    
-    
+
+class main:
+    def __init__(self):
+        pass
+    def checkout(self):
+        pass
