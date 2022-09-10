@@ -7,7 +7,6 @@ sys.path.append('./scripts/flex/ginkgo')
 from checkout import *
 from main_incremental import *
 from common import *
-import yaml
 
 class ginkgo:
     params={
