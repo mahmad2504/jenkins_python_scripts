@@ -8,9 +8,9 @@ from checkout import *
 from main_incremental import *
 from common import *
 
-class ginkgo:
+class 3_0_x:
     params={
-    "constants":"13.0.0"
+    "constants":"3.0.0"
     }
     
     def __init__(self):

@@ -5,6 +5,7 @@ import sys
 
 import common
 from flex.ginkgo.main import ginkgo as flex_ginkgo
+from omni.3_0_x.main import 3_0_x as omni_3_0_x
 from tarball.main import tarball
 
 if len(sys.argv)<3:
