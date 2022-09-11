@@ -55,13 +55,6 @@ def computemd5(filename):
             md5_hash.update(byte_block)
     return md5_hash.hexdigest()
 
-
-def setenvironment(dct):
-    myenv = os.environ.copy()
-    for item, value in dct.items():  # dct.iteritems() in Python 2
-        myenv[item] = value
-    return myenv
-     
 def printdictionary(dct,title="Dictionary"):
     print("**********"+title+"**********")
     for item, amount in dct.items():  # dct.iteritems() in Python 2
