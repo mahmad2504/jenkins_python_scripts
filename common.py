@@ -3,6 +3,16 @@ import os
 import subprocess
 import sys
 import hashlib
+from datetime import datetime, timedelta
+debug=0
+def getdate(N):
+    return  datetime.now() - timedelta(days=N)
+
+def removelastchr(input_str,count):
+    size = len(input_str)
+    # Slice string to remove last N characters from string
+    out_string = input_str[:size - count]
+    return out_string
 
 class DictObj:
     def __init__(self, in_dict:dict):
@@ -14,9 +24,11 @@ class DictObj:
                setattr(self, key, DictObj(val) if isinstance(val, dict) else val)
 
 def sh(command,env=None):
-    print('>>'+os.getcwd()+'>>'+command)
+    if(debug==1):
+        print('>>'+os.getcwd()+'>>'+command)
     result=subprocess.check_output(command, shell=True,env=env);
-    print(result.decode("utf-8"))
+    if(debug==1):
+        print(result.decode("utf-8"))
     return result.decode("utf-8")
     
 def sh_old(command):
