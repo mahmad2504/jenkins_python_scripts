@@ -3,7 +3,7 @@ import os
 import subprocess
 import sys
 import hashlib
-
+import env
 from omni.fir.checkout import *
 from omni.fir.industrial_pc import *
 from common import *
@@ -15,6 +15,7 @@ class main:
         #"ftp_dest_folder":"/pub/mahmad/src/",
         "mel_apt":["volt@filesend.embeddedfiles.com:/filesend/volt/omni/common/3.0/apt/base",
                    "volt@filesend.embeddedfiles.com:/filesend/volt/omni/common/3.0/apt/standard"],
+        "mel_apt_password":env.VOLT_PASSWORD,
         #"mel_apt":["narmada@134.86.61.14:omni-3.0-apt/base",
 		#          "narmada@134.86.61.14:omni-3.0-apt/standard"]
         "mel_apt_folder":"/scratch/jenkins/cache/omni3x/mel-apt",
@@ -56,7 +57,7 @@ class main:
         if self.params['MANIFEST']==None:
             self.params['MANIFEST']='prod/3.0/omni-3.0.0.xml'  #prod/3.0/all.xml
         if self.params['UPDATE_MEL_APT']==None:
-            self.params['UPDATE_MEL_APT']='no'  # yes/no
+            self.params['UPDATE_MEL_APT']='yes'  # yes/no
         if self.params['CHANGE_LOG']==None:
             self.params['CHANGE_LOG']='no'  # yes/no
         if self.params['BUILD_MACHINE']==None:

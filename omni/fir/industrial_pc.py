@@ -16,6 +16,7 @@ def industrial_pc(obj):
 
     mel_apt_folder=obj.params['mel_apt_folder']
     mel_apt=obj.params['mel_apt']
+    mel_apt_password=obj.params['mel_apt_password']
     pomfile=obj.params['pomfile']
     jkslocation=obj.params['jkslocation']
     tsaurl=obj.params['tsaurl']
@@ -29,7 +30,7 @@ def industrial_pc(obj):
         sh('mkdir -p '+mel_apt_folder)
         os.chdir(mel_apt_folder)
         for apt in mel_apt:
-            sh("sshpass -p '5!%AX_Z7' rsync -rvc --delete "+apt+" .")
+            sh("sshpass -p '"+mel_apt_password+"' rsync -rvc --delete "+apt+" .")
         os.chdir(WORKSPACE)
     else:
         print('Using cached mel-apt')
