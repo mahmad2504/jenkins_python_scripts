@@ -10,7 +10,3 @@ from common import *
 
 def checkout(obj):
     pass
-   
-
-    
-    

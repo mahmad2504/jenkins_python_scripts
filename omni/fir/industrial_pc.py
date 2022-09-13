@@ -51,8 +51,8 @@ def industrial_pc(obj):
 
     tree = ET.parse(pomfile)
     root=tree.getroot()
-    name = 'keystore.alias'
-    
+    keystorealias=root.find("./properties/keystore.alias").text
+    keystorepass=root.find("./properties/keystore.password").text
     
     sh('rsync -a build9-trusty-cs.sje.mentorg.com:/home/gcc/package-repo/cb_repos/tools/jsign/jsign-3.1.jar .')
     sh('md5sum jsign-3.1.jar')
@@ -61,8 +61,7 @@ def industrial_pc(obj):
     ####################################################################################################################
     print("######### PS1 scripts #########")
     ps1scripts=sh('find -type f -name *.ps1 -not -path "*/vsix/*" -not -path "*/mel_tools/*" | xargs readlink -f').splitlines()
-    keystorealias=root.find("./properties/keystore.alias").text
-    keystorepass=root.find("./properties/keystore.password").text
+    
 
     for ps1script in ps1scripts:
         print(ps1script)

@@ -7,13 +7,10 @@ import sys
 import common
 # import all flex classes
 from flex.ginkgo.main import main as flex_ginkgo
+from flex.fir.main import main as flex_fir
 
 # import all omni classes
 from omni.fir.main import main as omni_fir
-from omni.ginkgo.main import main as omni_ginkgo           #/sripts/run.py omni.y {funct}
-
-
-from tarball.main import tarball                           #/sripts/run.py tarball {funct}
 
 if len(sys.argv)<3:
     print('usage: run <module> <function>')
