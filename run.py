@@ -7,6 +7,7 @@ import sys
 import common
 # import all flex classes
 from flex.ginkgo.main import main as flex_ginkgo
+from flex.elm.main import main as flex_elm
 from flex.fir.main import main as flex_fir
 
 # import all omni classes
@@ -29,17 +30,14 @@ except Exception as e:
     pass
 try:
     obj = eval(module)()
-
+    
 except Exception as e:
     print(e)
     #print("module "+module.replace("_",".")+" not found")
     exit(-1)
-
 function=None  
 try:
     function = getattr(obj,funct)
-   
-
 except Exception as e:
     print(e)
     #print(funct+"() not found in "+module+" module")

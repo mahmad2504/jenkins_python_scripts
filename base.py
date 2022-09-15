@@ -1,5 +1,6 @@
 from common import *
 class Base:
+    params={}
     def __init__(self,params):
         print(params)
         if "PATH" in params:

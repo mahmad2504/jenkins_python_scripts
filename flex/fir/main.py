@@ -8,7 +8,6 @@ from flex.fir.checkout import *
 from common import *
 from base import *
 class main(Base):
-    
     def __init__(self):
         #################### CONSTANT #################################
         

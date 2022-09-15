@@ -9,7 +9,7 @@ from flex.fir.checkout import *
 
 # import parent script
 from common import *
-
+from base import *
 class main(Base):
     def __init__(self):
         #################### CONSTANT #################################
