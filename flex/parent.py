@@ -28,7 +28,7 @@ class Parent(Base):
             print('Environment variable "base_version" missing')
             exit(-1)
 
-        pass
+        
     def checkout(obj):
         os.chdir(obj.workspace)
         repo_url=obj.repo_url
@@ -60,9 +60,7 @@ class Parent(Base):
     
     def configure(obj):
         os.chdir(obj.workspace)
-        #sbmount=obj.params['systembuilder']
-        #base_build_name=obj.params['base_build_name']
-        #shortid=obj.params['SHORTID']
+        
         machine=obj.machine
         workspace=obj.workspace
         with open(r'repotop/scripts/jenkins_mel', 'r') as file:
@@ -84,6 +82,9 @@ class Parent(Base):
             with open(r'build_'+machine+"/conf/local.conf", 'w') as file:
                 file.write(data)
                 file.close()
+        os.chdir(obj.workspace)
+        os.chdir('build_'+machine)
+        sh('source setup-environment')
     
     def fetch_sources(obj):
         os.chdir(obj.workspace)
