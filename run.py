@@ -23,7 +23,7 @@ if len(sys.argv)<3:
     
 module=sys.argv[1].replace(".","_")
 funct=sys.argv[2]
-print(funct)
+
 try:
     arg=sys.argv[3]
     if(arg=='debug=1'):

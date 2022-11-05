@@ -1,7 +1,7 @@
 from common import *
 class Base:
     def __init__(self):
-        
+        print("base class")
         self.workspace=os.getenv('workspace')
         self.path=os.environ['PATH']
         print('Executing Script in '+self.workspace)
