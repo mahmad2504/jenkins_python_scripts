@@ -8,8 +8,7 @@ from pprint import pprint
 
 from common import *
 # import all flex classes
-from flex.ginkgo.main import main as flex_ginkgo
-from flex.elm.main import main as flex_elm
+
 from flex.fir.main import main as flex_fir
 
 # import all omni classes

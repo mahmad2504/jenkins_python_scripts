@@ -60,7 +60,7 @@ class main(Parent):
     #machine=imx6ullevk-mel
     #shortid=220823_1053
     #base_version=12.0.5
-    #WORKSPACE=/var/jenkins/mahmad/workspace
+    #workspace=/var/jenkins/mahmad/workspace
     #############################################################################
     def generate_oss_tarballs(obj):
         count=0
