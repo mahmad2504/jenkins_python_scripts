@@ -1,23 +1,20 @@
 from common import *
 class Base:
-    params={}
-    def __init__(self,params):
-        print(params)
-        if "PATH" in params:
-            params['PATH']=params['PATH']+":"+sh('echo $PATH').strip()
-        else:
-            params['PATH']=sh('echo $PATH').strip()
+    def __init__(self):
         
-        
-        pwd=sh('pwd').strip()
-        print(params['WORKSPACE'])
-        if pwd != params['WORKSPACE']:
-            print('Current directory does not match with WORKSPACE env variable')
+        self.workspace=os.getenv('workspace')
+        self.path=os.environ['PATH']
+        print('Executing Script in '+self.workspace)
+       
+        if self.workspace == None:
+            print('Environemntal variable "workspace" is missing')
             exit(-1)
 
-
-        printdictionary(params,'Parameters')
-    
+        if os.getcwd() != self.workspace:
+            print('Current directory does not match with WORKSPACE env variable')
+            exit(-1)
+        os.environ["workspace"]=self.workspace
+        os.environ["WORKSPACE"]=self.workspace
         
         
         

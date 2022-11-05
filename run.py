@@ -1,10 +1,12 @@
-#! /usr/bin/python
+#!/usr/bin/python3
 
 import os
 import subprocess
 import sys
+from pprint import pprint
 
-import common
+
+from common import *
 # import all flex classes
 from flex.ginkgo.main import main as flex_ginkgo
 from flex.elm.main import main as flex_elm
@@ -12,6 +14,9 @@ from flex.fir.main import main as flex_fir
 
 # import all omni classes
 from omni.fir.main import main as omni_fir
+
+# import all omni classes
+from ml.ver1.main import main as ml_ver1
 
 if len(sys.argv)<3:
     print('usage: run <module> <function>')
@@ -39,10 +44,14 @@ function=None
 try:
     function = getattr(obj,funct)
 except Exception as e:
-    print(e)
-    #print(funct+"() not found in "+module+" module")
+    #print(e)
+    print(funct+"() not found in "+module+" module")
     exit(-1)
 
+
+pprint(vars(obj))
+print(colored('Running '+funct, 'green'),colored('', 'white'))
+os.chdir(obj.workspace)
 function()
 
 

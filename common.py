@@ -1,9 +1,11 @@
-#! /usr/bin/python
+#!/usr/bin/python3
 import os
 import subprocess
 import sys
 import hashlib
 from datetime import datetime, timedelta
+from termcolor import colored
+import shutil
 debug=0
 def getdate(N):
     return  datetime.now() - timedelta(days=N)
@@ -23,16 +25,21 @@ class DictObj:
             else:
                setattr(self, key, DictObj(val) if isinstance(val, dict) else val)
 
-def sh(command,env=None):
-    if(debug==1):
-        print('>>'+os.getcwd()+'>>'+command)
+def sh(command,env=None,showoutput=0):
+    cwd=os.getcwd()
+    cwd=cwd.replace(os.environ['workspace'], '')
+    print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
+    #print('\033[96m'+'['+cwd+'] '+command)
     result=subprocess.check_output(command, shell=True,env=env);
-    if(debug==1):
-        print(result.decode("utf-8"))
+    if(showoutput==1):
+        print(colored(result.decode("utf-8"), 'cyan'),colored('', 'white'))
     return result.decode("utf-8")
     
-def sh_old(command):
-    print('>>'+os.getcwd()+'>>'+command)
+def ash(command):
+    cwd=os.getcwd()
+    cwd=cwd.replace(os.environ['workspace'], '')
+    print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
+
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     # Poll process for new output until finished
     while True:
@@ -40,24 +47,27 @@ def sh_old(command):
        nextline=nextline.decode("utf-8")
        if nextline == '' and process.poll() is not None:
           break
-       sys.stdout.write(nextline)
-       sys.stdout.flush()
+       print(colored(nextline, 'cyan'),colored('', 'white'))
+       #sys.stdout.write(nextline)
+       #sys.stdout.flush()
     output = process.communicate()[0]
     exitCode = process.returncode
     output=output.decode("utf-8")
     if (exitCode == 0):
        if(output != ""):
-         print(output)
+         print(colored(output, 'cyan'),colored('', 'white'))
        return output
     else:
-       raise ProcessException(command, exitCode, output)
+       print(command, exitCode, output)
+       exit(-1)
        
 def checkdiskspace(dspath,dskerrlimit):
-    dskspc=sh("df -P "+dspath+" | sed '1d' | awk '{print $4}'| tr -d '\n' ")
-    if int(dskspc)<=dskerrlimit:
-        print("ERROR: Insufficient disk space on "+dspath+" "+dskspc+" KB")
+    print('Checking disk space of '+dspath)
+    (total, used, free) = shutil.disk_usage(dspath)
+    if int(free)<=dskerrlimit:
+        print( colored("ERROR: Insufficient disk space on "+dspath+" "+str(free),"red"))
         return -1
-    return dskspc
+    return free
     
 def computemd5(filename):
     md5_hash = hashlib.md5()
@@ -67,8 +77,33 @@ def computemd5(filename):
             md5_hash.update(byte_block)
     return md5_hash.hexdigest()
 
-def printdictionary(dct,title="Dictionary"):
-    print("**********"+title+"**********")
-    for item, amount in dct.items():  # dct.iteritems() in Python 2
-        print("{}={}".format(item, amount))
-    print("*****************************")
+def printparams(dct):
+    print("**********"+' Environment Variables '+"**********")
+    remitems={}
+    for item, value in dct.items(): 
+        if(item.isupper()):
+            print("{}={}".format(item, value))
+        else:
+            remitems[item]=value
+    print("****************"+' Constants '+"*****************")
+    for item, value in remitems.items():
+        print("{}={}".format(item, value))
+    print("********************************************")
+
+def replace_nth(string, old, new, n):
+    index_of_occurrence = string.find(old)
+
+    occurrence = int(index_of_occurrence != -1)
+    print(occurrence)
+
+    # 👇️ find index of Nth occurrence
+    while index_of_occurrence != -1 and occurrence != n:
+        index_of_occurrence = string.find(old, index_of_occurrence + 1)
+        occurrence += 1
+
+    # 👇️ index of Nth occurrence found, replace substring
+    if occurrence == n:
+        return (
+            string[:index_of_occurrence] + new +
+            string[index_of_occurrence+len(old):]
+        )
