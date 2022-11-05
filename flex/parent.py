@@ -83,8 +83,6 @@ class Parent(Base):
                 file.write(data)
                 file.close()
         os.chdir(obj.workspace)
-        os.chdir('build_'+machine)
-        sh('source setup-environment')
     
     def fetch_sources(obj):
         os.chdir(obj.workspace)
