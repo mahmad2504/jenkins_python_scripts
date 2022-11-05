@@ -4,8 +4,6 @@ class Base:
         print("base class")
         self.workspace=os.getenv('workspace')
         self.path=os.environ['PATH']
-        print('Executing Script in '+self.workspace)
-       
         if self.workspace == None:
             print('Environemntal variable "workspace" is missing')
             exit(-1)
@@ -15,6 +13,7 @@ class Base:
             exit(-1)
         os.environ["workspace"]=self.workspace
         os.environ["WORKSPACE"]=self.workspace
+        print('Executing Script in '+self.workspace)
         
         
         
