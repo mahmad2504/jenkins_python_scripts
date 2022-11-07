@@ -77,6 +77,8 @@ class Parent(Base):
             #print(data)
             data += 'INHERIT += "archiver"\n'
             data += 'BB_GIT_SHALLOW = "0"\n'
+            data += 'INHERIT += "own-mirrors"\n'
+            data += 'SOURCE_MIRROR_URL = "http://easource.alm.mentorg.com/sources/fir"\n'
             data += 'ARCHIVER_MODE[src] = "original"\n'
             data += 'TOOLCHAINS_PATH = "'+workspace+'/toolchain/toolchains"'
             with open(r'build_'+machine+"/conf/local.conf", 'w') as file:
@@ -103,7 +105,7 @@ class Parent(Base):
         for key in packages:
             package=packages[key]
             os.chdir('build_'+machine)
-            ash("bitbake -c ar_original "+package)
+            ash(". ./setup-environment;bitbake -c ar_original "+package)
             ash("bitbake -f -c deploy_archives "+package)
 
     def upload_sources(obj):

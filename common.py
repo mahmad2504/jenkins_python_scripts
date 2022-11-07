@@ -30,7 +30,7 @@ def sh(command,env=None,showoutput=0):
     cwd=cwd.replace(os.environ['workspace'], '')
     print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
     #print('\033[96m'+'['+cwd+'] '+command)
-    result=subprocess.check_output(command, shell=True,env=env);
+    result=subprocess.check_output(command, shell=True,env=env, executable='/bin/bash');
     if(showoutput==1):
         print(colored(result.decode("utf-8"), 'cyan'),colored('', 'white'))
     return result.decode("utf-8")
@@ -40,7 +40,7 @@ def ash(command):
     cwd=cwd.replace(os.environ['workspace'], '')
     print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
 
-    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, executable='/bin/bash')
     # Poll process for new output until finished
     while True:
        nextline = process.stdout.readline()
