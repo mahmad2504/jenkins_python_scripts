@@ -106,7 +106,7 @@ class Parent(Base):
             package=packages[key]
             os.chdir('build_'+machine)
             ash(". ./setup-environment;bitbake -c ar_original "+package)
-            ash("bitbake -f -c deploy_archives "+package)
+            ash(". ./setup-environment;bitbake -f -c deploy_archives "+package)
 
     def upload_sources(obj):
         os.chdir(obj.workspace)
