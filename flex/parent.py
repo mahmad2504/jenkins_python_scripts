@@ -65,8 +65,13 @@ class Parent(Base):
         workspace=obj.workspace
         with open(r'repotop/scripts/jenkins_mel', 'r') as file:
             data = file.read()
-            data=replace_nth(data, "install_tools", "", 2)
-            data = data.replace('add_image_features "${build_image_features}"', 'exit 0\n')
+            data=replace_nth(data, "install_tools", "#install_tools", 2)
+            data = data.replace('add_image_features "${build_image_features}"', '#add_image_features "${build_image_features}"')
+            data = replace_nth(data,'build_mel_image', '#build_mel_image',2)
+            data = data.replace('archive_release_artifact  "archive_images" "${bitbaketarget}"','#archive_release_artifact  "archive_images" "${bitbaketarget}"')
+            data = data.replace('archive_sources "archive_ade_downloads"','#archive_sources "archive_ade_downloads"')
+            data = replace_nth(data,'clean_image_features',"#clean_image_features",2)
+            data = replace_nth(data,'archive_sources "archive_ade_downloads"','exit 0\n',2)
             with open(r'jenkins_mel', 'w') as file:
                 file.write(data)
         sh('chmod a+x jenkins_mel')
@@ -101,10 +106,10 @@ class Parent(Base):
             for line in lines:
                 package_name=line.split(",")[0]
                 packages[package_name]=package_name
-                
+
+        os.chdir("build_"+machine)        
         for key in packages:
             package=packages[key]
-            os.chdir('build_'+machine)
             ash(". ./setup-environment;bitbake -c ar_original "+package)
             ash(". ./setup-environment;bitbake -f -c deploy_archives "+package)
 
