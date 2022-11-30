@@ -69,7 +69,7 @@ class Parent(Base):
             data = data.replace('add_image_features "${build_image_features}"', '#add_image_features "${build_image_features}"')
             data = replace_nth(data,'build_mel_image', '#build_mel_image',2)
             data = data.replace('archive_release_artifact  "archive_images" "${bitbaketarget}"','#archive_release_artifact  "archive_images" "${bitbaketarget}"')
-            data = data.replace('archive_sources "archive_ade_downloads"','#archive_sources "archive_ade_downloads"')
+            data = replace_nth(data,'archive_sources "archive_ade_downloads"','#archive_sources "archive_ade_downloads"',1)
             data = replace_nth(data,'clean_image_features',"#clean_image_features",2)
             data = replace_nth(data,'archive_sources "archive_ade_downloads"','exit 0\n',2)
             with open(r'jenkins_mel', 'w') as file:
