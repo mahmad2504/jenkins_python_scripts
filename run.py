@@ -23,14 +23,13 @@ if len(sys.argv)<3:
     
 module=sys.argv[1].replace(".","_")
 funct=sys.argv[2]
-
+os.environ["console"]="0"
 try:
     arg=sys.argv[3]
-    if(arg=='debug=1'):
-        print("Debug mode is ON")
-        common.debug=1
+    if(arg=='console=1'):
+        print("console=1")
+        os.environ["console"]="1"
 except Exception as e:
-    print("Debug mode is OFF")
     pass
 try:
     obj = eval(module)()

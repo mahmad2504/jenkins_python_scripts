@@ -6,7 +6,7 @@ import hashlib
 from datetime import datetime, timedelta
 from termcolor import colored
 import shutil
-debug=0
+
 def getdate(N):
     return  datetime.now() - timedelta(days=N)
 
@@ -28,18 +28,30 @@ class DictObj:
 def sh(command,env=None,showoutput=0):
     cwd=os.getcwd()
     cwd=cwd.replace(os.environ['workspace'], '')
-    print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
+    console=os.environ['console']
+    if(console=="1"):
+        print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
+    else:
+        print('[WS'+cwd+'] '+command)
     #print('\033[96m'+'['+cwd+'] '+command)
     result=subprocess.check_output(command, shell=True,env=env, executable='/bin/bash');
     if(showoutput==1):
-        print(colored(result.decode("utf-8"), 'cyan'),colored('', 'white'))
+        if(console=="1"):
+            print(colored(result.decode("utf-8"), 'cyan'),colored('', 'white'))
+        else:
+            print(result.decode("utf-8"))
+ 
     return result.decode("utf-8")
     
 def ash(command):
     cwd=os.getcwd()
     cwd=cwd.replace(os.environ['workspace'], '')
-    print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
+    console=os.environ['console']
 
+    if(console=="1"):
+        print(colored('[WS'+cwd+'] ', 'green'),colored(command, 'white'))
+    else:
+        print('[WS'+cwd+'] '+command)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, executable='/bin/bash')
     # Poll process for new output until finished
     while True:
@@ -47,7 +59,10 @@ def ash(command):
        nextline=nextline.decode("utf-8")
        if nextline == '' and process.poll() is not None:
           break
-       print(colored(nextline, 'cyan'),colored('', 'white'))
+       if(console=="1"):
+          print(colored(nextline, 'cyan'),colored('', 'white'))
+       else:
+          print(nextline)
        #sys.stdout.write(nextline)
        #sys.stdout.flush()
     output = process.communicate()[0]

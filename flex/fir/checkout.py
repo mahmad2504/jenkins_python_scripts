@@ -47,7 +47,7 @@ def configure2(obj):
             file.write(data)
             file.close()
 
-def build(obj):
+def build2(obj):
     sbmount=obj.params['systembuilder']
     base_build_name=obj.params['base_build_name']
     shortid=obj.params['SHORTID']
